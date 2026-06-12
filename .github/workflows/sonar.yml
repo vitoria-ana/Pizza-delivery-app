@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -22,7 +24,8 @@ jobs:
           pip install django==3.0.7
 
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v4
+        # Atualizado para v6 (corrige falhas de segurança e comunicação)
+        uses: sonarsource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
@@ -31,3 +34,6 @@ jobs:
             -Dsonar.projectKey=Pizza-delivery-app
             -Dsonar.projectName=Pizza-delivery-app
             -Dsonar.sources=.
+            -Dsonar.python.version=3.10
+            -Dsonar.scanner.skipJreProvisioning=true
+            -Dsonar.exclusions=**/venv/**,**/db.sqlite3,**/.idea/**,**/migrations/**
