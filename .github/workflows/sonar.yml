@@ -24,7 +24,8 @@ jobs:
           pip install django==3.0.7
 
       - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@53c3e3e11ed364946a474b522003c244e887f139
+        # Usando a tag estável v6 que o GitHub resolve sem erros
+        uses: sonarsource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
