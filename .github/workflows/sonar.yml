@@ -10,12 +10,14 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        # pin@v4.1.7 (SHA estável oficial)
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        # pin@v5.1.0 (SHA estável oficial)
+        uses: actions/setup-python@65d7f2d534ac1bc029724a98216b3206164dee69
         with:
           python-version: "3.10"
 
@@ -24,8 +26,8 @@ jobs:
           pip install django==3.0.7
 
       - name: SonarQube Scan
-        # Usando a tag estável v6 que o GitHub resolve sem erros
-        uses: sonarsource/sonarqube-scan-action@v6
+        # pin@v6.0.0 (SHA oficial da versão v6 que você estava usando)
+        uses: sonarsource/sonarqube-scan-action@433363402fb3219fb0be64379ba518ff7e600f74
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
